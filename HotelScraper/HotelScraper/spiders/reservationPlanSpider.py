@@ -22,7 +22,7 @@ class ReservationplanspiderSpider(scrapy.Spider):
             dd = item.css("dl dd::text").get()
             cancel_policy.append(dt + " : " + dd)
         yield {
-            # 'name': response.css("div.p-listLayout-wrapper div.p-listLayout-detail dt::text").get(),
-            # 'details': response.css("p.detail-text > span.close + span.open::text").get(),
+            'name': response.css("div.p-listLayout-wrapper div.p-listLayout-detail dt::text").get(),
+            'details': response.css("p.detail-text > span.close + span.open::text").get(),
             'cancel_policy': cancel_policy
         } 
