@@ -21,8 +21,39 @@ class ReservationplanspiderSpider(scrapy.Spider):
             dt = item.css("dl dt::text").get()
             dd = item.css("dl dd::text").get()
             cancel_policy.append(dt + " : " + dd)
+
+        room_items = response.css("dl.p-listLayout-reservation dd ol li")
+
+        rooms = []
+        for item in room_items:
+            room_name = item.css("dl dd p::text").get()
+            tag_items = item.css("dl dd ul li::text").getall()
+            tags = tag_items if tag_items else []  # Convert to an empty list if no tags found
+            price = item.css("div dl dd p.p-priceLayout span > strong.u-fontsize21::text").get()
+            smoke = item.css("dd ul:not(.p-listLayout-reservationLabel) li:nth-child(1)::text").get()
+            size = item.css("dd ul:not(.p-listLayout-reservationLabel) li:nth-child(2)::text").get()
+            persons = item.css("dd ul:not(.p-listLayout-reservationLabel) li:nth-child(3)::text").get()
+            if room_name is not None:
+                room_data = {
+                    'room_name': room_name,
+                    'tags': tags,
+                    'price': price,
+                    'smoke': smoke,
+                    'size': size,
+                    'persons': persons
+                }
+                rooms.append(room_data)
+
         yield {
             'name': response.css("div.p-listLayout-wrapper div.p-listLayout-detail dt::text").get(),
             'details': response.css("p.detail-text > span.close + span.open::text").get(),
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            'cancel_policy': cancel_policy,
+            'rooms': rooms
+=======
+>>>>>>> Stashed changes
             'cancel_policy': cancel_policy
+>>>>>>> 98cee823d2176532639ce447f2f468e20733e952
         } 
