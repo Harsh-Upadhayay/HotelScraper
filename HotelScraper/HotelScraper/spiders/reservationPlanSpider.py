@@ -47,13 +47,6 @@ class ReservationplanspiderSpider(scrapy.Spider):
         yield {
             'name': response.css("div.p-listLayout-wrapper div.p-listLayout-detail dt::text").get(),
             'details': response.css("p.detail-text > span.close + span.open::text").get(),
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
             'cancel_policy': cancel_policy,
             'rooms': rooms
-=======
->>>>>>> Stashed changes
-            'cancel_policy': cancel_policy
->>>>>>> 98cee823d2176532639ce447f2f468e20733e952
         } 
