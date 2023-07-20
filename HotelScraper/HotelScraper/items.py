@@ -11,12 +11,18 @@ class HotelscraperItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
-class BaseItem(scrapy.Item):
-    unique_id = scrapy.Field()
-    error = scrapy.Field()
+# class BaseItem(scrapy.Item):
+#     unique_id = scrapy.Field()
+#     error = scrapy.Field()
 
-class PlanItem(BaseItem):
-    plan = scrapy.Field()
+# class PlanItem(BaseItem):
+#     plan = scrapy.Field()
 
-class RoomItem(BaseItem):
-    room = scrapy.Field()
+# class RoomItem(BaseItem):
+#     room = scrapy.Field()
+
+class PlanItem(scrapy.Item):
+    name = scrapy.Field()
+    details = scrapy.Field()
+    cancel_policy = scrapy.Field()
+    rooms = scrapy.Field()
